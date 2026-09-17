@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personal Health Dashboard — 7 วัน</title>
+<style>
+:root {
+  --bg:#f6f7fb; --card:#fff; --text:#172033; --muted:#687386;
+  --border:#e6e9f0; --accent:#4f46e5; --accent2:#0f766e;
+  --good:#e7f7ef; --goodtext:#13734a; --rest:#f1f3f6;
+}
+* {box-sizing:border-box}
+body {margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+.container {max-width:1180px;margin:auto;padding:32px 20px 48px}
+header {margin-bottom:24px}
+h1 {font-size:30px;margin:0 0 6px}
+.subtitle {color:var(--muted);margin:0}
+.weight {display:inline-block;margin-top:12px;padding:7px 11px;border:1px solid var(--border);border-radius:999px;background:#fff;color:#495366;font-size:14px}
+.kpis {display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+.card {background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(23,32,51,.035)}
+.kpi-label {color:var(--muted);font-size:14px;margin-bottom:9px}
+.kpi-value {font-size:28px;font-weight:750;letter-spacing:-.5px}
+.kpi-note {font-size:12px;color:var(--muted);margin-top:5px}
+.section-title {font-size:19px;margin:0 0 14px}
+.charts {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+.chart-wrap {min-width:0}
+.chart-title {font-weight:700;margin-bottom:4px}
+svg {width:100%;height:auto;display:block;overflow:visible}
+svg text {font-size:11px;fill:#7a8495}
+.grid {stroke:#e9ecf2;stroke-width:1}
+.line {fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke:var(--accent)}
+.chart-wrap:nth-child(2) .line {stroke:var(--accent2)}
+svg circle {fill:var(--card);stroke:var(--accent);stroke-width:3}
+.chart-wrap:nth-child(2) circle {stroke:var(--accent2)}
+svg .value {fill:var(--text);font-weight:700}
+.unit {font-size:12px;color:var(--muted);text-align:right;margin-top:-10px}
+.table-card {overflow:hidden;padding:0}
+.table-head {padding:20px 20px 4px}
+.table-scroll {overflow-x:auto}
+table {width:100%;border-collapse:collapse;min-width:760px}
+th,td {padding:13px 20px;text-align:left;border-bottom:1px solid var(--border);font-size:14px}
+th {font-size:12px;text-transform:none;color:var(--muted);background:#fafbfc}
+td span:not(.pill) {display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.pill {display:inline-block!important;padding:5px 9px;border-radius:999px;font-size:12px!important;margin:0!important}
+.pill.yes {background:var(--good);color:var(--goodtext)}
+.pill.no {background:var(--rest);color:#657080}
+.note {font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6}
+@media(max-width:800px) {
+ .kpis {grid-template-columns:repeat(2,1fr)}
+ .charts {grid-template-columns:1fr}
+ h1 {font-size:25px}
+}
+@media(max-width:480px) {.kpis {grid-template-columns:1fr 1fr} .card {padding:15px} .kpi-value {font-size:23px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Personal Health Dashboard</h1>
+  <p class="subtitle">สรุปข้อมูลสุขภาพ 7 วัน · 7–13 ก.ย.</p>
+  <span class="weight">น้ำหนักตัว: 85 กก.</span>
+</header>
+
+<section class="kpis">
+  <div class="card"><div class="kpi-label">จำนวนวันออกกำลังกาย</div><div class="kpi-value">4 วัน</div><div class="kpi-note">จากทั้งหมด 7 วัน</div></div>
+  <div class="card"><div class="kpi-label">เวลารวม</div><div class="kpi-value">6 ชม. 0 นาที</div><div class="kpi-note">เฉพาะวันที่ระบุว่าออกกำลังกาย</div></div>
+  <div class="card"><div class="kpi-label">ชั่วโมงนอนเฉลี่ย</div><div class="kpi-value">7.8 ชม.</div><div class="kpi-note">เฉลี่ยจากข้อมูล 7 วัน</div></div>
+  <div class="card"><div class="kpi-label">น้ำเฉลี่ย</div><div class="kpi-value">2.79 ลิตร</div><div class="kpi-note">เฉลี่ยต่อวัน</div></div>
+</section>
+
+<section class="charts">
+  <div class="card"><div class="chart-wrap">
+      <div class="chart-title">แนวโน้มชั่วโมงนอน</div>
+      <svg viewBox="0 0 760 260" role="img" aria-label="แนวโน้มชั่วโมงนอน">
+        <line x1="52" y1="205.0" x2="740" y2="205.0" class="grid"/><text x="42" y="209.0" text-anchor="end">0</text><line x1="52" y1="161.2" x2="740" y2="161.2" class="grid"/><text x="42" y="165.2" text-anchor="end">2.5</text><line x1="52" y1="117.5" x2="740" y2="117.5" class="grid"/><text x="42" y="121.5" text-anchor="end">5</text><line x1="52" y1="73.8" x2="740" y2="73.8" class="grid"/><text x="42" y="77.8" text-anchor="end">7.5</text><line x1="52" y1="30.0" x2="740" y2="30.0" class="grid"/><text x="42" y="34.0" text-anchor="end">10</text>
+        <polyline points="52.0,73.8 166.7,73.8 281.3,73.8 396.0,65.0 510.7,65.0 625.3,73.8 740.0,56.2" class="line"/>
+        <circle cx="52.0" cy="73.8" r="5" /><circle cx="166.7" cy="73.8" r="5" /><circle cx="281.3" cy="73.8" r="5" /><circle cx="396.0" cy="65.0" r="5" /><circle cx="510.7" cy="65.0" r="5" /><circle cx="625.3" cy="73.8" r="5" /><circle cx="740.0" cy="56.2" r="5" /><text x="52.0" y="61.8" text-anchor="middle" class="value">7.5</text><text x="166.7" y="61.8" text-anchor="middle" class="value">7.5</text><text x="281.3" y="61.8" text-anchor="middle" class="value">7.5</text><text x="396.0" y="53.0" text-anchor="middle" class="value">8</text><text x="510.7" y="53.0" text-anchor="middle" class="value">8</text><text x="625.3" y="61.8" text-anchor="middle" class="value">7.5</text><text x="740.0" y="44.2" text-anchor="middle" class="value">8.5</text><text x="52.0" y="242" text-anchor="middle">7 ก.ย.</text><text x="166.7" y="242" text-anchor="middle">8 ก.ย.</text><text x="281.3" y="242" text-anchor="middle">9 ก.ย.</text><text x="396.0" y="242" text-anchor="middle">10 ก.ย.</text><text x="510.7" y="242" text-anchor="middle">11 ก.ย.</text><text x="625.3" y="242" text-anchor="middle">12 ก.ย.</text><text x="740.0" y="242" text-anchor="middle">13 ก.ย.</text>
+      </svg>
+      <div class="unit">ชั่วโมงนอน</div>
+    </div></div>
+  <div class="card"><div class="chart-wrap">
+      <div class="chart-title">แนวโน้มปริมาณน้ำ</div>
+      <svg viewBox="0 0 760 260" role="img" aria-label="แนวโน้มปริมาณน้ำ">
+        <line x1="52" y1="205.0" x2="740" y2="205.0" class="grid"/><text x="42" y="209.0" text-anchor="end">0</text><line x1="52" y1="161.2" x2="740" y2="161.2" class="grid"/><text x="42" y="165.2" text-anchor="end">1</text><line x1="52" y1="117.5" x2="740" y2="117.5" class="grid"/><text x="42" y="121.5" text-anchor="end">2</text><line x1="52" y1="73.8" x2="740" y2="73.8" class="grid"/><text x="42" y="77.8" text-anchor="end">3</text><line x1="52" y1="30.0" x2="740" y2="30.0" class="grid"/><text x="42" y="34.0" text-anchor="end">4</text>
+        <polyline points="52.0,73.8 166.7,73.8 281.3,73.8 396.0,73.8 510.7,73.8 625.3,73.8 740.0,139.4" class="line"/>
+        <circle cx="52.0" cy="73.8" r="5" /><circle cx="166.7" cy="73.8" r="5" /><circle cx="281.3" cy="73.8" r="5" /><circle cx="396.0" cy="73.8" r="5" /><circle cx="510.7" cy="73.8" r="5" /><circle cx="625.3" cy="73.8" r="5" /><circle cx="740.0" cy="139.4" r="5" /><text x="52.0" y="61.8" text-anchor="middle" class="value">3</text><text x="166.7" y="61.8" text-anchor="middle" class="value">3</text><text x="281.3" y="61.8" text-anchor="middle" class="value">3</text><text x="396.0" y="61.8" text-anchor="middle" class="value">3</text><text x="510.7" y="61.8" text-anchor="middle" class="value">3</text><text x="625.3" y="61.8" text-anchor="middle" class="value">3</text><text x="740.0" y="127.4" text-anchor="middle" class="value">1.5</text><text x="52.0" y="242" text-anchor="middle">7 ก.ย.</text><text x="166.7" y="242" text-anchor="middle">8 ก.ย.</text><text x="281.3" y="242" text-anchor="middle">9 ก.ย.</text><text x="396.0" y="242" text-anchor="middle">10 ก.ย.</text><text x="510.7" y="242" text-anchor="middle">11 ก.ย.</text><text x="625.3" y="242" text-anchor="middle">12 ก.ย.</text><text x="740.0" y="242" text-anchor="middle">13 ก.ย.</text>
+      </svg>
+      <div class="unit">ลิตร</div>
+    </div></div>
+</section>
+
+<section class="card table-card">
+  <div class="table-head"><h2 class="section-title">กิจกรรมแต่ละวัน</h2></div>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>วันที่</th><th>กิจกรรม</th><th>สถานะ</th><th>เวลาออกกำลังกาย</th><th>นอน</th><th>น้ำ</th></tr></thead>
+    <tbody><tr>
+      <td><strong>7 ก.ย.</strong><span>จันทร์</span></td>
+      <td>เดินชัน 30 นาที</td>
+      <td><span class="pill yes">ออกกำลังกาย</span></td>
+      <td>1 ชม. 30 นาที</td>
+      <td>7.5 ชม.</td>
+      <td>3 ลิตร</td>
+    </tr><tr>
+      <td><strong>8 ก.ย.</strong><span>อังคาร</span></td>
+      <td>เดินชัน 30 นาที</td>
+      <td><span class="pill yes">ออกกำลังกาย</span></td>
+      <td>1 ชม. 30 นาที</td>
+      <td>7.5 ชม.</td>
+      <td>3 ลิตร</td>
+    </tr><tr>
+      <td><strong>9 ก.ย.</strong><span>พุธ</span></td>
+      <td>เดินชัน 30 นาที</td>
+      <td><span class="pill no">พัก</span></td>
+      <td>0 ชม. 0 นาที</td>
+      <td>7.5 ชม.</td>
+      <td>3 ลิตร</td>
+    </tr><tr>
+      <td><strong>10 ก.ย.</strong><span>พฤหัสบดี</span></td>
+      <td>เดินชัน 30 นาที</td>
+      <td><span class="pill no">พัก</span></td>
+      <td>0 ชม. 0 นาที</td>
+      <td>8 ชม.</td>
+      <td>3 ลิตร</td>
+    </tr><tr>
+      <td><strong>11 ก.ย.</strong><span>ศุกร์</span></td>
+      <td>เดินชัน 30 นาที</td>
+      <td><span class="pill yes">ออกกำลังกาย</span></td>
+      <td>1 ชม. 30 นาที</td>
+      <td>8 ชม.</td>
+      <td>3 ลิตร</td>
+    </tr><tr>
+      <td><strong>12 ก.ย.</strong><span>เสาร์</span></td>
+      <td>เดินชัน 30 นาที</td>
+      <td><span class="pill yes">ออกกำลังกาย</span></td>
+      <td>1 ชม. 30 นาที</td>
+      <td>7.5 ชม.</td>
+      <td>3 ลิตร</td>
+    </tr><tr>
+      <td><strong>13 ก.ย.</strong><span>อาทิตย์</span></td>
+      <td>พัก</td>
+      <td><span class="pill no">พัก</span></td>
+      <td>0 ชม. 0 นาที</td>
+      <td>8.5 ชม.</td>
+      <td>1.5 ลิตร</td>
+    </tr></tbody>
+  </table>
+  </div>
+</section>
+
+<p class="note">หมายเหตุ: วันที่ 7–8, 11–12 ก.ย. ระบุเวลาออกกำลังกาย 1 ชม. 30 นาที จึงรวมเป็น 6 ชั่วโมง ส่วน “เดินชัน 30 นาที” แสดงเป็นกิจกรรมประจำวันตามข้อมูลที่ให้มา แต่ไม่ได้บวกซ้ำใน KPI เวลารวม</p>
+</div>
+</body>
+</html>
